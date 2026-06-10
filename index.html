@@ -1,0 +1,129 @@
+<<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepGuard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">🛡️</div>
+      <div>
+        <h1>DeepGuard</h1>
+        <p>Détection de deepfakes & usurpation d'identité</p>
+      </div>
+    </header>
+
+    <!-- Onglets -->
+    <nav class="tabs">
+      <button class="tab active">Analyse</button>
+      <button class="tab">Historique</button>
+      <button class="tab">Rapport</button>
+    </nav>
+
+    <!-- SECTION ANALYSE -->
+    <div id="section-analyse">
+
+      <section class="stats-row">
+        <div class="stat-card">
+          <p class="label">Fichiers analysés</p>
+          <p class="value" id="stat-analyses">0</p>
+        </div>
+        <div class="stat-card">
+          <p class="label">Deepfakes détectés</p>
+          <p class="value" id="stat-deepfakes">0</p>
+        </div>
+        <div class="stat-card">
+          <p class="label">Taux de détection</p>
+          <p class="value" id="stat-taux">0%</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card" id="upload-card">
+          <h2>Importer un fichier</h2>
+          <div class="upload-zone" id="drop-zone">
+            <p>Glissez votre image ou vidéo ici</p>
+            <span>ou</span>
+            <input type="file" id="file-input" accept="image/*,video/*" hidden />
+            <button onclick="document.getElementById('file-input').click()">Parcourir</button>
+          </div>
+        </div>
+        <div class="card" id="result-card">
+          <h2>Résultat de l'analyse</h2>
+          <div id="result-content">
+            <p style="color:#aaa;font-size:14px;text-align:center;padding:40px 0">
+              Aucun fichier analysé
+            </p>
+          </div>
+          <button id="export-btn" onclick="exporterPDF()" style="display:none;margin-top:12px;padding:7px 16px;border:1px solid #ccc;border-radius:6px;background:white;cursor:pointer;font-size:13px;">
+            📄 Exporter le rapport
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SECTION HISTORIQUE -->
+    <div id="section-historique" style="display:none">
+      <div class="card">
+        <h2>Historique des analyses</h2>
+        <ul id="history-list" style="padding:0;list-style:none">
+          <p id="history-empty" style="color:#aaa;font-size:14px;text-align:center;padding:40px 0">
+            Aucune analyse effectuée
+          </p>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION RAPPORT -->
+    <div id="section-rapport" style="display:none">
+      <div class="card">
+        <h2>Rapport de session</h2>
+        <div style="padding:12px 0">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+
+  <div style="background:#f5f5f5;border-radius:8px;padding:14px;text-align:center">
+    <p style="font-size:12px;color:#888;margin-bottom:4px">Fichiers analysés</p>
+    <p style="font-size:26px;font-weight:700" id="rapport-analyses">0</p>
+  </div>
+
+  <div style="background:#fef2f2;border-radius:8px;padding:14px;text-align:center">
+    <p style="font-size:12px;color:#888;margin-bottom:4px">Deepfakes</p>
+    <p style="font-size:26px;font-weight:700;color:#dc2626" id="rapport-deepfakes">0</p>
+  </div>
+
+  <div style="background:#fffbeb;border-radius:8px;padding:14px;text-align:center">
+    <p style="font-size:12px;color:#888;margin-bottom:4px">Suspects</p>
+    <p style="font-size:26px;font-weight:700;color:#d97706" id="rapport-suspects">0</p>
+  </div>
+
+  <div style="background:#f0fdf4;border-radius:8px;padding:14px;text-align:center">
+    <p style="font-size:12px;color:#888;margin-bottom:4px">Authentiques</p>
+    <p style="font-size:26px;font-weight:700;color:#16a34a" id="rapport-authentiques">0</p>
+  </div>
+
+</div>
+            
+      
+              
+            
+            
+          <button onclick="exporterPDF()" style="width:100%;padding:10px;background:#1a1a2e;color:white;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500">
+            📄 Télécharger le rapport PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
