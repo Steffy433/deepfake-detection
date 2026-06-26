@@ -1,0 +1,7 @@
+venv/
+dataset/
+app/faces/
+app/uploads/
+app/__pycache__/
+*.pyc
+*.h5
